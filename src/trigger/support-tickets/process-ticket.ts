@@ -1,6 +1,5 @@
 import { task } from "@trigger.dev/sdk";
 import { z } from "zod";
-import { readFileSync } from "fs";
 
 // Ticket payload schema
 const TicketSchema = z.object({
@@ -31,11 +30,11 @@ export const processTicket = task({
   },
   run: async (payload: TicketPayload) => {
     // Validate environment variables
-    const serviceAccountPath = process.env.GOOGLE_SERVICE_ACCOUNT_PATH;
+    const serviceAccountJson = process.env.GOOGLE_SERVICE_ACCOUNT_JSON;
     const sheetId = process.env.GOOGLE_SHEET_ID;
 
-    if (!serviceAccountPath) {
-      throw new Error("GOOGLE_SERVICE_ACCOUNT_PATH is not set");
+    if (!serviceAccountJson) {
+      throw new Error("GOOGLE_SERVICE_ACCOUNT_JSON is not set");
     }
     if (!sheetId) {
       throw new Error("GOOGLE_SHEET_ID is not set");
@@ -48,7 +47,7 @@ export const processTicket = task({
     console.log(`Analysis: ${analysis.category} | ${analysis.sentiment} | ${analysis.priority}`);
 
     // Step 2: Get access token for Google Sheets
-    const serviceAccount = JSON.parse(readFileSync(serviceAccountPath, "utf-8"));
+    const serviceAccount = JSON.parse(serviceAccountJson);
     const sheetsAccessToken = await getAccessToken(serviceAccount);
 
     // Step 3: Skip email for now
