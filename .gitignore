@@ -5,3 +5,11 @@ dist/
 .trigger/
 *.log
 .DS_Store
+
+# Sensitive credentials - DO NOT COMMIT
+service-account.json
+credentials.json
+
+# Temp files
+*.tmp
+*.temp
