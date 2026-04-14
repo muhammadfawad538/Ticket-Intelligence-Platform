@@ -297,10 +297,13 @@ async function createJWT(header: any, payload: any, privateKey: string): Promise
 
   const pemHeader = "-----BEGIN PRIVATE KEY-----";
   const pemFooter = "-----END PRIVATE KEY-----";
+
+  // Extract just the base64 content between header and footer
   const pemContents = normalizedKey
-    .replace(pemHeader, "")
-    .replace(pemFooter, "")
-    .replace(/\s/g, "");
+    .split('\n')
+    .filter(line => line && !line.includes('BEGIN') && !line.includes('END'))
+    .join('')
+    .trim();
 
   const binaryDer = Uint8Array.from(atob(pemContents), c => c.charCodeAt(0));
 
