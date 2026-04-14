@@ -1,0 +1,11 @@
+Authorization URL - Copy and paste this in your browser:
+
+https://accounts.google.com/o/oauth2/v2/auth?client_id=249356600690-810b72s39m8h7770a1i20v8l0bvp8eko.apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Foauth2callback&response_type=code&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fgmail.send&access_type=offline&prompt=consent
+
+Instructions:
+1. Make sure the script is running: node get-gmail-token.mjs
+2. Copy the URL above
+3. Paste it in your browser
+4. Sign in with: mfawaduetpeshawar@gmail.com
+5. Click "Allow"
+6. The browser will redirect to localhost:3000 and show your refresh token

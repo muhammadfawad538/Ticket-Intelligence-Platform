@@ -1,0 +1,25 @@
+{
+  "name": "wat1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npx trigger.dev@latest dev",
+    "deploy": "npx trigger.dev@latest deploy"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@trigger.dev/sdk": "4.4.4",
+    "googleapis": "^171.4.0",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@trigger.dev/cli": "4.4.4",
+    "@types/node": "^25.6.0",
+    "tsx": "^4.21.0",
+    "typescript": "^6.0.2"
+  }
+}
