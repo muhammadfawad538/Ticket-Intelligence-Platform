@@ -292,12 +292,15 @@ async function createJWT(header: any, payload: any, privateKey: string): Promise
   const message = `${headerB64}.${payloadB64}`;
 
   // Import the private key
+  // Replace literal \n with actual newlines if needed
+  const normalizedKey = privateKey.replace(/\\n/g, '\n');
+
   const pemHeader = "-----BEGIN PRIVATE KEY-----";
   const pemFooter = "-----END PRIVATE KEY-----";
-  const pemContents = privateKey.substring(
-    pemHeader.length,
-    privateKey.length - pemFooter.length - 1
-  ).replace(/\s/g, "");
+  const pemContents = normalizedKey
+    .replace(pemHeader, "")
+    .replace(pemFooter, "")
+    .replace(/\s/g, "");
 
   const binaryDer = Uint8Array.from(atob(pemContents), c => c.charCodeAt(0));
 
